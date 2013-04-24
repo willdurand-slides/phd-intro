@@ -38,6 +38,21 @@
                         3. that can be used to **generate tests** and/or **specifications**?
                     </script>
                 </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## World Domination Plan
+
+                        * January 2013 - June: **reading**, creating a **snapshot** of all Level
+                        2 applications
+                        * June - September: tool for extracting traces from existing applications
+                        * September - March 2014: generating partial models
+                        * March - February 2015: performing robustness testing on applications
+                        based on partial models
+                        * February - August 2016: performing conformance testing on applications
+                        based on partial models with reuse of tests generated in the previous step
+                        * August - December 2016: results analysis, end of the PhD
+                    </script>
+                </section>
                 <section>
                     <section>
                         <h2>Extracting A Knowledge Base a.k.a. Traces</h2>
@@ -181,7 +196,190 @@
                     </section>
                 </section>
                 <section>
-                    <h2>Work In Progress</h2>
+                    <section>
+                        <h2>Work In Progress</h2>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Web Applications Testing Based On HTTP Traces
+
+                            It is the same thing but... different.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Why?
+
+                            The need for an **overview** of the job.
+
+                            Detecting potential issues **before** building the real things.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Extracting A Knowledge Base a.k.a. Traces
+
+                            [**HTTP Archive**](https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/HAR/Overview.html)
+                            (HAR), an archival format for HTTP transactions that are captured by HTTP sniffers.
+
+                            It is possible to either record traces in a web browser, or create a proxy that records
+                            all the traffic (not yet done).
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            This behaves exactly like the **black-box approach** described before, except that traces
+                            are **readable**, and **understandable** by a human.
+
+                                {
+                                  "request": {
+                                    "method": "GET",
+                                    "url": "https://github.com/",
+                                    "httpVersion": "HTTP/1.1",
+                                    "headers": [],
+                                    "queryString": [],
+                                    "cookies": []
+                                  },
+                                  "response": {
+                                    "status": 200,
+                                    "statusText": "OK",
+                                    "headers": [],
+                                    "cookies": [],
+                                    "content": {}
+                                  }
+                                }
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Filtering Traces
+
+                            First, we have to **remove _noise_** from the set of traces as **everything
+                            is recorded**, but **not always relevant**.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Sanitized Traces
+
+                            ![](images/github.com-raw.png)
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Formal Modeling
+
+                            Well, not that formal by now...
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Example of First-Order Predicate Calculus
+
+                                IF
+                                    "request.method" IS POST
+                                    AND "request.data" CONTAINS A USERNAME
+                                    AND "request.data" CONTAINS A PASSWORD
+                                    AND "previous_request" WAS A LOGIN PAGE
+                                THEN
+                                    // this is a login step
+                                ENDIF
+
+                            First-Order Logic:  `AND`, `OR`, `NOT`
+
+                            Predicates: `CONTAINS A USERNAME`, `CONTAINS A PASSWORD`, `WAS A LOGIN PAGE`
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            Thanks to this inference rule, the two "steps" highlighted in
+                            red are combined into a single one named _Login_.
+
+                            ![](images/github.com-raw-highlighted.png)
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Result Model
+
+                            ![](images/github.com.png)
+
+                            This model shows a real, and meaningful user scenario.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Generating Tests And Specifications
+
+                            This model allows us to generate code, however more rules have
+                            to be defined in order to produce **assertions**.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Assertion?
+
+                            A confident and forceful statement of fact or belief.
+
+                            In testing, it is used to check a property in a test method:
+
+                                class RepoTest
+                                {
+                                    [Test]
+                                    public void TestStatusIsUnknownByDefault()
+                                    {
+                                        Repo repository = new Repo();
+                                        Assert.That(repository.Status, Is.EqualTo(Status.Unknown));
+                                    }
+                                }
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Code Generation (WIP)
+
+                                namespace Generated;
+
+                                class MyTest extends FunctionalTestCase
+                                {
+                                    public function test0()
+                                    {
+                                        $crawler  = $this->cli->request('GET', 'https://github.com/');
+                                        $response = $this->cli->getResponse();
+
+                                        // assertions here
+                                    }
+                                }
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## What About Generating A Specification?
+
+                            At this time, it is only possible to retrieve **scenarios**.
+
+                            Retrieving **use cases** may be possible by using a combination of **inference
+                            rules** and **language recognition**.
+
+                            This has not been explored though.
+                        </script>
+                    </section>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Conclusion
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Thank You.
+
+                        ### Questions?
+
+                        <br><br>
+                        <br><br>
+                        William Durand - PhD Student at Michelin/LIMOS
+                    </script>
                 </section>
             </div>
         </div>
@@ -195,7 +393,7 @@
                 center: true,
 
                 theme: Reveal.getQueryHash().theme,
-                transition: Reveal.getQueryHash().transition || 'none',
+                transition: Reveal.getQueryHash().transition || 'concave',
 
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
