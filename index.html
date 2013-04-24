@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PhD Thesis Introduction</title>
+        <link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>PhD Thesis Introduction</h1>
+                    <em>William Durand - April 26, 2013</em>
+                </section>
+                <section>
+                    <h2>PhD Topic</h2>
+                    <p>Optimizing and reusing tests for applications and production machines in a model-based testing approach.</p>
+                </section>
+                <section>
+                    <h2>PhD Topic</h2>
+                    <p>Optimizing and reusing <strong>tests</strong> for applications and production machines in a model-based testing approach.</p>
+                </section>
+                <section>
+                    <h2>PhD Topic</h2>
+                    <p>Optimizing and reusing <strong>tests</strong> for applications and production machines in a <strong>model-based testing</strong> approach.</p>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ## In other words
+
+                        Based on a software, running on a<br>production machine, is it possible to:
+                        <br><br>
+
+                        1. extract a **knowledge base**
+                        2. that can be formalized by a **model**
+                        3. that can be used to **generate tests** and/or **specifications**?
+                    </script>
+                </section>
+                <section>
+                    <section>
+                        <h2>Extracting A Knowledge Base a.k.a. Traces</h2>
+                    </section>
+                    <section>
+                        <h2>Context (1/2)</h2>
+
+                        <p>Michelin has many applications spread at different levels:</p>
+                        <p>
+                            <ul class="levels">
+                                <li>L4: Business Software</li>
+                                <li>L3: Virtual level as it is not that used (Factory Management)</li>
+                                <li><strong>L2: Supervision / Workshop Management</strong></li>
+                                <li>L1: Automata</li>
+                            </ul>
+                            <img src="images/levels.png" />
+                        </p>
+                        <p>These levels can exchange data among them.</p>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Context (2/2)
+
+                            Focus on **Level 2** applications but, then again,<br>there are a lot of
+                            differences between them, such as:
+
+                            * Programming Language
+                            * Framework
+                            * Design
+                            * Versions
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Hypotheses
+
+                            1. Applications deployed in production behave as expected
+                            1. No specification available for any applications
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## So?
+
+                            From a Level 2 perspective, the best way to create an **agnostic knowledge base**
+                            is to use a **black-box approach**.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## How?
+
+                            The idea is to **monitor a running application**, and to **record incoming/outgoing
+                            data**. That is what we call **traces**.
+
+                            <br>
+                            The second step is to leverage these traces in order to create a **Formal Model**.
+                        </script>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Formal Modeling</h2>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Formal Model?
+
+                            A **formal model** of a system is a **mathematical model** of it, at some chosen level
+                            of **abstraction**.
+
+                            Its purpose is to **permit precise understanding**, **specification**, and **analysis**
+                            of the system.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Why?
+
+                            It is possible to **verify the system's properties** in a more thorough fashion than empirical testing.
+
+                            The metamodels used by most formal methods are often **limited in order to enhance provability**.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## How?
+
+                            An **expert system** can produce a model from given traces.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Expert System
+
+                            In AI, an **expert system** is a computer system that **emulates the decision-making
+                            ability of a human expert**.
+
+                            Designed to **solve complex problems by reasoning about knowledge**, and **not** by
+                            following the procedure of a developer as is the case in conventional programming.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## How?
+
+                            An expert system can own a set of **inference rules**.
+
+                            **First-order predicate calculus** is a way to write these rules.
+
+                            <br>
+                            Once we obtain a decent model, we can use it to generate tests and specifications.
+                        </script>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Generating Tests And Specifications</h2>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Which Tests?
+
+                            Only **functional tests** will be generated.
+
+                            A formal model gives us the ability to test the **robustness** of the applications
+                            as well as their **conformance**.
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Which Specifications?
+
+                            No real answer yet, some ideas though:
+
+                            * Functional Specifications
+                            * Use Cases
+                            * User Stories
+                            * API documentations
+                        </script>
+                    </section>
+                </section>
+                <section>
+                    <h2>Work In Progress</h2>
+                </section>
+            </div>
+        </div>
+        <script type="text/javascript" src="reveal.js/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="reveal.js/js/reveal.min.js"></script>
+        <script type="text/javascript">
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme,
+                transition: Reveal.getQueryHash().transition || 'none',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    //{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    //{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+        </script>
+    </body>
+</html>
